@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const connectDB = require('./config/database');
@@ -24,13 +23,6 @@ app.use('/api/notes', noteRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'DevBoard API running' });
-});
-
-// Servir frontend build en producción
-const frontendPath = path.join(__dirname, '../../frontend/dist');
-app.use(express.static(frontendPath));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
 const PORT = process.env.PORT || 5000;
