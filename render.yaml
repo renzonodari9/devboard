@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: devboard-backend
+    env: node
+    region: ohio
+    rootDir: backend
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
