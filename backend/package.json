@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "build": "cd ../frontend && npm install && npm run build",
+    "build": "npm --prefix ../frontend install && npm --prefix ../frontend run build",
     "render-start": "npm run build && npm start"
   },
   "dependencies": {
