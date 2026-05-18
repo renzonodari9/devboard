@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const MONGO_URI = 'mongodb://localhost:27017/devboard';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/devboard';
 
 const UserSchema = new mongoose.Schema({
   name: String,
