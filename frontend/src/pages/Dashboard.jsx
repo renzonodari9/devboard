@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import api from '../services/api';
 import StatCardSkeleton from '../components/StatCardSkeleton';
-import { FolderKanban, CheckSquare, FileText, TrendingUp, Loader2, Clock } from 'lucide-react';
+import { FolderKanban, CheckSquare, FileText, TrendingUp, Loader2, Clock, ChevronRight } from 'lucide-react';
 
 export default function Dashboard() {
   const { user } = useAuthStore();
@@ -86,23 +86,27 @@ export default function Dashboard() {
         <p className="text-[#a3a3a3] mt-1">Bienvenido a tu dashboard de desarrollo</p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
         {statCards.map((stat, i) => (
           <Link
             key={i}
             to={stat.to}
-            className="group p-6 bg-[#171717] border border-[#262626] rounded-2xl hover:border-[#404040] hover:shadow-lg hover:shadow-black/20 transition-all"
+            className="group p-4 sm:p-6 bg-[#171717] border border-[#262626] rounded-2xl hover:border-[#404040] hover:shadow-lg hover:shadow-black/20 transition-all"
           >
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-3 sm:block sm:mb-4">
               <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform shrink-0"
                 style={{ backgroundColor: `${stat.color}20` }}
               >
-                <stat.icon size={24} style={{ color: stat.color }} />
+                <stat.icon size={20} className="sm:w-6 sm:h-6" style={{ color: stat.color }} />
+              </div>
+              <div className="sm:hidden">
+                <p className="text-white font-bold text-lg">{stat.value}</p>
+                <p className="text-[#a3a3a3] text-xs">{stat.label}</p>
               </div>
             </div>
-            <p className="text-[#a3a3a3] text-sm">{stat.label}</p>
-            <p className="text-3xl font-bold text-white mt-1">{stat.value}</p>
+            <p className="hidden sm:block text-[#a3a3a3] text-sm">{stat.label}</p>
+            <p className="hidden sm:block text-3xl font-bold text-white mt-1">{stat.value}</p>
           </Link>
         ))}
       </div>
@@ -183,27 +187,45 @@ export default function Dashboard() {
 
         <div className="p-6 bg-[#171717] border border-[#262626] rounded-2xl">
           <h2 className="text-xl font-semibold text-white mb-4">Accesos Rápidos</h2>
-          <div className="grid sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-3">
             <Link
               to="/projects"
-              className="flex items-center gap-3 p-4 bg-[#262626] rounded-xl hover:bg-[#303030] hover:scale-[1.02] transition-all"
+              className="flex items-center gap-4 p-4 bg-[#262626] rounded-xl hover:bg-[#303030] active:scale-[0.98] transition-all"
             >
-              <FolderKanban size={20} className="text-[#22c55e]" />
-              <span className="text-white text-sm font-medium">Nuevo Proyecto</span>
+              <div className="w-10 h-10 rounded-xl bg-[#22c55e]/20 flex items-center justify-center shrink-0">
+                <FolderKanban size={20} className="text-[#22c55e]" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-white text-sm font-medium">Nuevo Proyecto</p>
+                <p className="text-[#737373] text-xs mt-0.5">Organiza tus proyectos</p>
+              </div>
+              <ChevronRight size={18} className="text-[#525252] shrink-0" />
             </Link>
             <Link
               to="/tasks"
-              className="flex items-center gap-3 p-4 bg-[#262626] rounded-xl hover:bg-[#303030] hover:scale-[1.02] transition-all"
+              className="flex items-center gap-4 p-4 bg-[#262626] rounded-xl hover:bg-[#303030] active:scale-[0.98] transition-all"
             >
-              <CheckSquare size={20} className="text-[#3b82f6]" />
-              <span className="text-white text-sm font-medium">Nueva Tarea</span>
+              <div className="w-10 h-10 rounded-xl bg-[#3b82f6]/20 flex items-center justify-center shrink-0">
+                <CheckSquare size={20} className="text-[#3b82f6]" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-white text-sm font-medium">Nueva Tarea</p>
+                <p className="text-[#737373] text-xs mt-0.5">Gestiona tus tareas</p>
+              </div>
+              <ChevronRight size={18} className="text-[#525252] shrink-0" />
             </Link>
             <Link
               to="/notes"
-              className="flex items-center gap-3 p-4 bg-[#262626] rounded-xl hover:bg-[#303030] hover:scale-[1.02] transition-all sm:col-span-2"
+              className="flex items-center gap-4 p-4 bg-[#262626] rounded-xl hover:bg-[#303030] active:scale-[0.98] transition-all"
             >
-              <FileText size={20} className="text-[#f59e0b]" />
-              <span className="text-white text-sm font-medium">Nueva Nota</span>
+              <div className="w-10 h-10 rounded-xl bg-[#f59e0b]/20 flex items-center justify-center shrink-0">
+                <FileText size={20} className="text-[#f59e0b]" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-white text-sm font-medium">Nueva Nota</p>
+                <p className="text-[#737373] text-xs mt-0.5">Guarda tus apuntes</p>
+              </div>
+              <ChevronRight size={18} className="text-[#525252] shrink-0" />
             </Link>
           </div>
         </div>

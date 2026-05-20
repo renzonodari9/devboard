@@ -72,27 +72,33 @@ export default function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden bg-[#0a0a0a] border-t border-[#262626] px-4 py-2">
+        <div className="md:hidden bg-[#0a0a0a] border-t border-[#262626] px-4 py-3">
           <div className="flex flex-col gap-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                onClick={() => setMobileOpen(false)}
-                className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
-                  location.pathname === item.to
-                    ? 'bg-[#262626] text-white'
-                    : 'text-[#a3a3a3] hover:bg-[#171717]'
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <div className="border-t border-[#262626] my-1" />
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  onClick={() => setMobileOpen(false)}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
+                    location.pathname === item.to
+                      ? 'bg-[#262626] text-white'
+                      : 'text-[#a3a3a3] hover:bg-[#171717]'
+                  }`}
+                >
+                  <Icon size={18} />
+                  {item.label}
+                </Link>
+              );
+            })}
+            <div className="border-t border-[#262626] my-2" />
+            <div className="px-4 py-2 text-xs text-[#525252]">{user?.email}</div>
             <button
               onClick={handleLogout}
-              className="px-4 py-3 rounded-lg text-sm font-medium text-red-400 hover:bg-red-400/10 text-left transition-colors"
+              className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-red-400 hover:bg-red-400/10 transition-colors"
             >
+              <LogOut size={18} />
               Cerrar Sesión
             </button>
           </div>

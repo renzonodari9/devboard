@@ -165,7 +165,7 @@ export default function Notes() {
                   {note.isPinned && <Pin size={14} className="text-[#f59e0b] fill-current flex-shrink-0" />}
                   <h3 className="font-semibold text-white truncate">{note.title}</h3>
                 </div>
-                <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0">
+                <div className="flex gap-1 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex-shrink-0">
                   <button onClick={() => handlePin(note)} className="p-1.5 rounded-lg text-[#a3a3a3] hover:text-yellow-400 hover:bg-yellow-400/10 transition-colors">
                     <Pin size={14} className={note.isPinned ? 'fill-current' : ''} />
                   </button>

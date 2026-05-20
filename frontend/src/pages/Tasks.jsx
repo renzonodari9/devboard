@@ -193,7 +193,7 @@ export default function Tasks() {
                 )}
               </div>
 
-              <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0">
+              <div className="flex gap-1 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex-shrink-0">
                 <button onClick={() => handleEdit(task)} className="p-2 rounded-lg text-[#a3a3a3] hover:text-white hover:bg-[#262626] transition-colors">
                   <Pencil size={16} />
                 </button>
